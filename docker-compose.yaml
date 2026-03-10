@@ -3,4 +3,8 @@ version: "3.8"
 
 services:
   green-api-web:
-    image: ghcr.io/PieceTheLord/
+    image: ghcr.io/piecethelord/greenapiweb:latest
+    container_name: green-api-frontend
+    ports:
+      - 80:80
+    restart: always
