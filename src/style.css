@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -6,14 +12,12 @@ body {
 }
 
 .credentials_block {
-  /* margin: auto; */
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: stretch;
   width: 50%;
-  min-height: 400px;
-  padding-top: 200px;
   gap: 32px;
+  height: 50%;
 }
 
 .credentials_buttons {
@@ -31,21 +35,23 @@ body {
 .element {
   padding: 12px;
 }
-
-#result {
-  white-space: pre-wrap;
-  word-break: break-all;
+.divider {
+  display: flex;
   height: 100%;
-  overflow: auto;
-  margin: 0;
-  padding: 10px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  gap: 24px;
 }
 
 .result {
+  white-space: pre-wrap;
+  word-break: break-all;
+  padding: 10px;
   text-wrap: wrap;
   width: 50%;
-  height: 100%;
   border: 1px solid #ccc;
+  overflow-y: auto;
 }
 
 .message_block {
