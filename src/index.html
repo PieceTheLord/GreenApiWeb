@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="credentials_block">
+    <div>
+      <div class="credentials block">
+        <input class="element" type="text" placeholder="Id Instance" id="IdInstance" required>
+        <input class="element" type="text" placeholder="Api Token Instance" id="ApiTokenInstance" required>
+      </div>
+      <div class="credentials_buttons block">
+        <button class="element" onclick="getSettings()" id="GetSettings">GetSettings</button>
+        <button class="element" onclick="getStateInstance()" id="GetStateInstance">GetStateInstance</button>
+      </div>
+      <div class="message_block block">
+        <input class="element" type="text" placeholder="Chat Id" id="chat_id">
+        <input class="element" type="text" placeholder="Message" id="message">
+        <button class="message_btn" onclick="sendMessage()">Send Message</button>
+      </div>
+      <div class="file_message_block block">
+        <input class="element" type="text" placeholder="Chat Id" id="file_chat_id">
+        <input class="element" type="text" placeholder="File URL" id="file_url">
+        <input class="element" type="text" placeholder="File Name with extenstion" id="file_name">
+        <button class="message_btn" onclick="sendFile()">Send File</button>
+      </div>
+    </div>
+    <div class="result">
+      <p id="result">
+
+      </p>
+    </div>
+  </main>
+  <script>
+    function sendFile() {
+      const chatId = document.getElementById("file_chat_id").value;
+      const filePath = document.getElementById("file_url").value;
+      const idInstance = document.getElementById("IdInstance").value;
+      const apiTokenInstance = document.getElementById("ApiTokenInstance").value;
+      const fileName = document.getElementById("file_name").value;
+
+      console.log(chatId, filePath);
+
+      fetch(`https://4100.api.green-api.com/waInstance${idInstance}/sendFileByUrl/${apiTokenInstance}`, {
+        body: JSON.stringify({
+          chatId: chatId,
+          urlFile: filePath,
+          fileName: fileName,
+        }),
+        method: "POST",
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("result").textContent = "Error: " + error.message;
+        });
+    }
+
+    function sendMessage() {
+      const chatId = document.getElementById("chat_id").value;
+      const message = document.getElementById("message").value;
+      const idInstance = document.getElementById("IdInstance").value;
+      const apiTokenInstance = document.getElementById("ApiTokenInstance").value;
+
+      console.log(chatId, message);
+
+      fetch(`https://4100.api.green-api.com/waInstance${idInstance}/sendMessage/${apiTokenInstance}`, {
+        body: JSON.stringify({
+          chatId: chatId,
+          message: message
+        }),
+        method: "POST",
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("result").textContent = "Error: " + error.message;
+        });
+    }
+    async function getSettings() {
+      // Id Instance `4100542030`
+      // Api Token Instance `2b2e0be12bf14ae991f3b9b10639fa3f5d86cf93bced4b1895`
+      const idInstance = document.getElementById("IdInstance").value;
+      const apiTokenInstance = document.getElementById("ApiTokenInstance").value;
+
+      console.log(idInstance, apiTokenInstance);
+      fetch(`https://4100.api.green-api.com/waInstance${idInstance}/getSettings/${apiTokenInstance}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("result").textContent = "Error: " + error.message;
+        });
+
+    }
+    function getStateInstance() {
+      const idInstance = document.getElementById("IdInstance").value;
+      const apiTokenInstance = document.getElementById("ApiTokenInstance").value;
+
+      console.log(idInstance, apiTokenInstance);
+
+      fetch(`https://4100.api.green-api.com/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("result").textContent = "Error: " + error.message;
+        });
+    }
+  </script>
+</body>
+
+</html>

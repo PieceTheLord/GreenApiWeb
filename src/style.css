@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+}
+
+.credentials_block {
+  /* margin: auto; */
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 50%;
+  min-height: 400px;
+  padding-top: 200px;
+  gap: 32px;
+}
+
+.credentials_buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.element {
+  padding: 12px;
+}
+
+#result {
+  white-space: pre-wrap;
+  word-break: break-all;
+  height: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: 10px;
+}
+
+.result {
+  text-wrap: wrap;
+  width: 50%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+
+.message_block {
+  margin-top: 12px;
+}
+
+.message_btn {
+  padding: 12px;
+}
+
+.file_message_block {
+  margin-top: 12px;
+}
