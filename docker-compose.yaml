@@ -2,8 +2,14 @@
 
 services:
   green-api-web:
+    # Image for GitHub actions deploying
     image: ghcr.io/piecethelord/greenapiweb:latest
     container_name: green-api-frontend
     ports:
       - 80:80
+      - 443:443
+    # Set volumes for our ssl certs to allow https connections
+    volumes:
+      - /etc/letsencrypt/live/alexey-web-dev.ru/fullchain.pem:/etc/ngnix/ssl/fullchain.pem:ro
+      - /etc/letsencrypt/live/alexey-web-dev.ru/privkey.pem:/etc/ngnix/ssl/privkey.pem:ro
     restart: always
