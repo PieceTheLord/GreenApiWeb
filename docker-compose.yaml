@@ -10,6 +10,6 @@ services:
       - 443:443
     # Set volumes for our ssl certs to allow https connections
     volumes:
-      - /etc/letsencrypt/live/alexey-web-dev.ru/fullchain.pem:/etc/ngnix/ssl/fullchain.pem:ro
-      - /etc/letsencrypt/live/alexey-web-dev.ru/privkey.pem:/etc/ngnix/ssl/privkey.pem:ro
+      - /etc/letsencrypt/live/alexey-web-dev.ru/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+      - /etc/letsencrypt/live/alexey-web-dev.ru/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
     restart: always
