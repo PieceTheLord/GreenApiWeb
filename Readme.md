@@ -61,7 +61,7 @@
 
 ## 👨‍💻 Об авторе
 *   **Имя:** Алексей
-*   **Telegram:** [@Alexey_TheGreat]
+*   **Telegram:** @Alexey_TheGreat
 *   **GitHub:** [https://github.com/PieceTheLord](https://github.com/PieceTheLord)
 
 ---
