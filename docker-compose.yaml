@@ -17,10 +17,11 @@ services:
       # 1. Point out the domen
       - "traefik.http.routers.oldapp.rule=Host(`greenapi.alexey-web-dev.ru`)"
       # 2. Get the Traffic by http
+      # - "traefik.http.routers.oldapp.entrypoints=web"
       - "traefik.http.routers.oldapp.entrypoints=websecure" # Изменили web на websecure
       - "traefik.http.routers.oldapp.tls.certresolver=myresolver" # Сказали выпустить SSL!
       # 3. Point out to Traefik the port of our app
-      - "traefik.http.seкvices.oldapp.loadbalancer.server.port=80"
+      - "traefik.http.services.oldapp.loadbalancer.server.port=80"
 
 networks:
   web:
