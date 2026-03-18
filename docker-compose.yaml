@@ -5,11 +5,23 @@ services:
     # Image for GitHub actions deploying
     image: ghcr.io/piecethelord/greenapiweb:latest
     container_name: green-api-frontend
-    ports:
-      - 80:80
-      - 443:443
     # Set volumes for our ssl certs to allow https connections
     volumes:
       - /etc/letsencrypt/live/alexey-web-dev.ru/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
       - /etc/letsencrypt/live/alexey-web-dev.ru/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
     restart: always
+    networks:
+      - web
+    labels:
+      - "traefik.ennable=true"
+      # 1. Point out the domen
+      - "traefik.http.routers.oldapp.rule=Host(`greenapi.alexey-web-dev.ru`)"
+      # 2. Get the Traffic by http
+      - "traefik.http.routers.newapi.entrypoints=websecure" # Изменили web на websecure
+      - "traefik.http.routers.newapi.tls.certresolver=myresolver" # Сказали выпустить SSL!
+      # 3. Point out to Traefik the port of our app
+      - "traefik.http.srevices.oldapp.loadbalancer.server.port=80"
+
+networks:
+  web:
+    external: true
