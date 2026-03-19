@@ -15,13 +15,13 @@ services:
     labels:
       - "traefik.enable=true"
       # 1. Point out the domen
-      - "traefik.http.routers.oldapp.rule=Host(`greenapi.alexey-web-dev.ru`)"
+      - "traefik.http.routers.greenapi.rule=Host(`greenapi.alexey-web-dev.ru`)"
       # 2. Get the Traffic by http
-      # - "traefik.http.routers.oldapp.entrypoints=web"
-      - "traefik.http.routers.oldapp.entrypoints=web,websecure" # Изменили web на websecure
-      - "traefik.http.routers.oldapp.tls.certresolver=myresolver" # Сказали выпустить SSL!
+      # - "traefik.http.routers.greenapi.entrypoints=web"
+      - "traefik.http.routers.greenapi.entrypoints=web,websecure" # Изменили web на websecure
+      - "traefik.http.routers.greenapi.tls.certresolver=myresolver" # Сказали выпустить SSL!
       # 3. Point out to Traefik the port of our app
-      - "traefik.http.services.oldapp.loadbalancer.server.port=80"
+      - "traefik.http.services.greenapi.loadbalancer.server.port=80"
 
 networks:
   web:
